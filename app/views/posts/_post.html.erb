@@ -1,25 +1,27 @@
 <div class="post">
   <div class="post-author">
     <div class="avatar avatar-<%= rand(1..10) %>"></div>
-    <div><%= @post.user.username %></div>
+    <div><%= post.user.username %></div>
   </div>
   <div class="post-body">
-    <span><%= @post.body %></span>
+    <span><%= post.body %></span>
   </div>
   <div class="post-actions">
     <%= turbo_frame_tag 'post-likes' do %>
-      <%= button_to "", post_likes_path(@post), class: 'post-actions-like' %>
+      <%= button_to "", post_likes_path(post), class: 'post-actions-like' %>
     <% end %>
-    <div class="post-actions-comments">4 comments</div>
-  </div>
-  <div class="post-comments">
-    <div class="comment">
-      <span class="comment-author">Joe</span>
-      This is something a said
-    </div>
-    <div class="comment">
-      <span class ="comment-author">Joe</span>
-      This is something a said
+    <div class="post-actions-comments">
+      <%= turbo_frame_tag 'post-comments-count' do %>
+        <%= pluralize(post.comments.size, "comment") %>
+      <% end %>
     </div>
   </div>
+  <% if post.comments.any? %>
+    <div class="post-comments">
+      <div id="comment-form"><%= render 'comments/form', post: post %></div>
+      <div id="post-comments-list">
+       <%= render 'comments/list', post: post %>
+      </div>
+    </div>
+  <% end %>
 </div>
