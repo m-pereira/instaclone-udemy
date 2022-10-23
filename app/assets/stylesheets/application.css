@@ -15,18 +15,15 @@
  */
 
 body {
-  max-width: 960px;
+  width: 960px;
   margin: 10px auto;
-}
-
-button {
-  border: none;
-  cursor: pointer;
 }
 
 .nav {
   text-align: right;
 }
+
+/* Post */
 
 .post {
   width: 400px;
@@ -219,6 +216,11 @@ button {
 
 .comment-author {
   font-weight: bold;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
 
 .comment-form {

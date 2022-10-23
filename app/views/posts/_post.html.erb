@@ -1,14 +1,16 @@
 <div class="post">
   <div class="post-author">
-    <div class="avatar avatar-<%= rand(1..27) %>"></div>
+    <div class="avatar avatar-<%= rand(1..10) %>"></div>
     <div><%= @post.user.username %></div>
   </div>
   <div class="post-body">
     <span><%= @post.body %></span>
   </div>
   <div class="post-actions">
-    <div class="post-actions-like"></div>
-    <div class="post-actions-comments">4 comments </div>
+    <%= turbo_frame_tag 'post-likes' do %>
+      <%= button_to "", post_likes_path(@post), class: 'post-actions-like' %>
+    <% end %>
+    <div class="post-actions-comments">4 comments</div>
   </div>
   <div class="post-comments">
     <div class="comment">
