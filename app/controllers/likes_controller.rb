@@ -1,11 +1,21 @@
 class LikesController < ApplicationController
+  before_action :load_resource
+
   def create
-    @post = Post.find(params[:post_id])
-    current_user.like!(@post)
+    current_user.like!(@resource)
   end
 
   def destroy
-    @post = current_user.posts.find(params[:post_id])
-    current_user.likes.where(post_id: @post.id).delete_all
+    current_user.dislike!(@resource)
+  end
+
+  private
+
+  def load_resource
+    @resource = resource_klass.find(params[:likeable_id])
+  end
+
+  def resource_klass
+    params[:likeable_type].constantize
   end
 end

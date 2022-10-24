@@ -5,12 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :username, presence: true
 
-  def like!(post)
-    Like.create!(post: post, user: self)
+  def like!(resource)
+    likes.create!(likeable: resource)
+  end
+
+  def dislike!(resource)
+    likes.where(likeable: resource).delete_all
   end
 end

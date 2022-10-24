@@ -185,13 +185,15 @@ body {
   height: 24px;
 }
 
-.post-actions-like {
+.post-actions-like,
+.comment-actions-like {
   background: url('like.png');
   background-size: contain;
   display: block;
 }
 
-.post-actions-unlike {
+.post-actions-unlike,
+.comment-actions-unlike {
   background: url('liked.png');
   background-size: contain;
   display: block;
@@ -223,6 +225,18 @@ button {
   cursor: pointer;
 }
 
+.comment {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
 .comment-form {
   margin-bottom: 5px;
+}
+
+.comment-actions-like,
+.comment-actions-unlike {
+  width: 12px;
+  height: 12px;
 }

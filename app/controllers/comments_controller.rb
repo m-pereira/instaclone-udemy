@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params.merge(post: @post, user: current_user))
 
     if @comment.save
-
     else
       render :new, status: :unprocessable_entity
     end

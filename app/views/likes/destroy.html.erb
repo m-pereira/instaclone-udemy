@@ -1,3 +1,4 @@
-<%= turbo_frame_tag 'post-likes' do %>
-  <%= button_to "", post_likes_path(@post), class: 'post-actions-like' %>
+<%= turbo_frame_tag "#{@resource.class.name.downcase}-#{@resource.id}-likes" do %>
+  <%= button_to '', likes_path(likeable_type: @resource.class, likeable_id: @resource.id),
+                class: "#{@resource.class.name.downcase}-actions-like" %>
 <% end %>

@@ -7,21 +7,23 @@
     <span><%= post.body %></span>
   </div>
   <div class="post-actions">
-    <%= turbo_frame_tag 'post-likes' do %>
-      <%= button_to "", post_likes_path(post), class: 'post-actions-like' %>
+    <%= turbo_frame_tag "post-#{post.id}-likes" do %>
+      <% if current_user.likes.pluck(:likeable_id).include?(post.id) %>
+        <%= button_to '', likes_path(likeable_type: post.class, likeable_id: post.id),
+                      class: 'post-actions-unlike', method: :delete %>
+      <% else %>
+        <%= button_to '', likes_path(likeable_type: post.class, likeable_id: post.id),
+                      class: 'post-actions-like' %>
+      <% end %>
     <% end %>
     <div class="post-actions-comments">
-      <%= turbo_frame_tag 'post-comments-count' do %>
+      <%= turbo_frame_tag "post-#{post.id}-comments-count" do %>
         <%= pluralize(post.comments.size, "comment") %>
       <% end %>
     </div>
   </div>
-  <% if post.comments.any? %>
-    <div class="post-comments">
-      <div id="comment-form"><%= render 'comments/form', post: post %></div>
-      <div id="post-comments-list">
-       <%= render 'comments/list', post: post %>
-      </div>
-    </div>
-  <% end %>
+  <div id="comment-form-<%= post.id %>"><%= render 'comments/form', post: post %></div>
+  <div class="post-comments">
+    <%= render 'comments/list', post: post %>
+  </div>
 </div>

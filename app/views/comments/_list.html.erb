@@ -1,6 +1,21 @@
- <% post.comments.each do |comment| %>
-  <div class="comment">
-    <span class="comment-author"><%= comment.user.username %></span>
-    <%= comment.body %>
-  </div>
-<% end %>
+<div id="post-<%= post.id %>-comments-list">
+  <% post.comments.each do |comment| %>
+    <div class="comment">
+      <div>
+        <span class="comment-author"><%= comment.user.username %></span>
+        <%= comment.body %>
+      </div>
+      <div>
+        <%= turbo_frame_tag "comment-#{comment.id}-likes" do %>
+          <% if current_user.likes.pluck(:likeable_id).include?(comment.id) %>
+            <%= button_to '', likes_path(likeable_type: comment.class, likeable_id: comment.id),
+                          class: 'comment-actions-unlike', method: :delete %>
+          <% else %>
+            <%= button_to '', likes_path(likeable_type: comment.class, likeable_id: comment.id),
+                          class: 'comment-actions-like' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

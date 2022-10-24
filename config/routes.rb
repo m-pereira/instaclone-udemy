@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root 'site#index'
 
   resources :posts, only: %i[new create] do
-    resources :likes, only: :create do
-      delete :destroy, on: :collection
-    end
-
     resources :comments, only: %i[new create]
+  end
+
+  resources :likes, only: :create do
+    delete :destroy, on: :collection
   end
 end
