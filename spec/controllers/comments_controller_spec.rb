@@ -1,6 +1,6 @@
 describe CommentsController do
   let(:user) { create(:user) }
-  let(:post_object) { create(:post, user: user) }
+  let(:post_object) { create(:post, user:) }
 
   before { sign_in user }
 

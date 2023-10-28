@@ -11,11 +11,6 @@ class LikesController < ApplicationController
 
   private
 
-  def load_resource
-    @resource = resource_klass.find(params[:likeable_id])
-  end
-
-  def resource_klass
-    params[:likeable_type].constantize
-  end
+  def load_resource = @resource = resource_klass.find(params[:likeable_id])
+  def resource_klass = params[:likeable_type].constantize
 end
