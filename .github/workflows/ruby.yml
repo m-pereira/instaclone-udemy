@@ -32,7 +32,7 @@ jobs:
       RAILS_ENV: test
       NODE_ENV: test
       CI: true
-      GEMFILE_RUBY_VERSION: 3.0.0
+      GEMFILE_RUBY_VERSION: 3.2.0
       PG_HOST: localhost
       PG_USERNAME: postgres
       PG_PASSWORD: password
@@ -43,7 +43,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: 3.2.0
           bundler-cache: true
 
       - name: Setup DB
