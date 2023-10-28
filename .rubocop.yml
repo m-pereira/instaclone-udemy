@@ -1,0 +1,173 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/data_schema.rb'
+    - 'db/data/*.rb'
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'lib/tasks/**/*.rake'
+    - 'app/views/**/*.jbuilder'
+    - 'vendor/**/*'
+
+FactoryBot/CreateList:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - '**/*_spec.rb'
+    - 'spec/**/*.rb'
+
+Rails/ApplicationController:
+  Exclude:
+    - 'app/controllers/public_controller.rb'
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/RenderInline:
+  Enabled: false
+
+Rails/RequestReferer:
+  Enabled: true
+  EnforcedStyle: referrer
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Enabled: true
+  Environments:
+    - development
+    - test
+    - staging
+    - production
+    - onboarding
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: true
+  Prefixes:
+    - for
+    - when
+    - with
+    - without
+    - and
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/RedundantRegexpEscape:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false

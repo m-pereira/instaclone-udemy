@@ -17,11 +17,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry-rails'
   gem 'pry'
+  gem 'pry-rails'
+  gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'rubocop', require: false
 end
 
 group :development do
