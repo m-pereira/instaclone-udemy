@@ -10,11 +10,6 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
-  def like!(resource)
-    likes.create!(likeable: resource)
-  end
-
-  def dislike!(resource)
-    likes.where(likeable: resource).delete_all
-  end
+  def like!(resource) = likes.create!(likeable: resource)
+  def dislike!(resource) = likes.where(likeable: resource).delete_all
 end
