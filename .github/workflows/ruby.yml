@@ -1,0 +1,73 @@
+name: RSpec & Rubocop
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types: [synchronize, opened, reopened]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:15.3
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      NODE_ENV: test
+      CI: true
+      GEMFILE_RUBY_VERSION: 3.0.0
+      PG_HOST: localhost
+      PG_USERNAME: postgres
+      PG_PASSWORD: password
+
+    steps:
+      - uses: actions/checkout@v3.2.0
+
+      - name: Set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.3.0
+          cache: 'yarn'
+
+      - uses: actions/cache@v3.3.1
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true
+
+      - name: Build
+        run: |
+          yarn
+
+      - name: Setup DB
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+
+      - name: Specs
+        run: bundle exec rspec
+
+      - name: Lint
+        run: bundle exec rubocop
