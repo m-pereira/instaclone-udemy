@@ -10,6 +10,9 @@ development:
 test:
   <<: *default
   database: instaclone_test
+  host: <%= ENV['PG_HOST'] %>
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
 
 production:
   <<: *default

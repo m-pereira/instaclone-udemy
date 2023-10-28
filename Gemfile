@@ -19,6 +19,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'pry'
   gem 'pry-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -26,7 +29,5 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'rspec-rails'
 end
